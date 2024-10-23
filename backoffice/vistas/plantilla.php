@@ -22,6 +22,8 @@
   		<link rel="stylesheet" href="vistas/css/plugins/OverlayScrollbars.min.css">
   		<!-- jdSlider -->
   		<link rel ="stylesheet" href="vistas/css/plugins/jdSlider.css">
+  		<!-- select2 -->
+  		<link rel ="stylesheet" href="vistas/css/plugins/select2.min.css">
   		<!-- Estilos personalizados -->
   		<link rel="stylesheet" href="vistas/css/style.css">
 
@@ -47,8 +49,15 @@
 		</script>
 		<!-- jdSlider -->
 		<script src="vistas/js/plugins/jdSlider.js"></script> 
-	
+		<!-- select2 -->
+		<script src="vistas/js/plugins/select2.full.min.js"></script> 
+		<!-- inputmask -->
+		<script src="vistas/js/plugins/jquery.inputmask.js"></script>	
+		<!-- jsignature -->
+		<script src="vistas/js/plugins/jSignature.js"></script>
+		<script src="vistas/js/plugins/jSignature.CompressorSVG.js"></script>
 	</head>
+	
 	<body class="hold-transition sidebar-mini sidebar-collapse ">
 		<div class="wrapper">
 			<?php 
@@ -88,5 +97,6 @@
 		</div>
 		<!-- js personalizado -->
 		<script src="vistas/js/inicio.js"></script>
+		<script src="vistas/js/usuarios.js"></script>
 	</body>
  </html>
