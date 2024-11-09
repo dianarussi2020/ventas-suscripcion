@@ -1,4 +1,21 @@
- <!DOCTYPE html>
+<?php
+	session_start();
+
+	$ruta = ControladorGeneral::ctrRuta();
+	$valorSuscripcion  = ControladorGeneral::ctrValorSuscripcion();
+	$patrocinador = ControladorGeneral::ctrPatrocinador();
+	if(!isset($_SESSION['validarSesion'])){
+		echo '<script> 
+				window.location = "'.$ruta.'ingreso";
+			</script>';
+		return;
+	}
+	$item = "id_usuario";
+	$valor = $_SESSION['id'];
+	$usuario = ControladorUsuarios::ctrMostrarUsuarios($item, $valor);
+	#echo '<pre>'; print_r($usuario); echo '</pre>';
+?>
+<!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="utf-8">
@@ -24,6 +41,9 @@
   		<link rel ="stylesheet" href="vistas/css/plugins/jdSlider.css">
   		<!-- select2 -->
   		<link rel ="stylesheet" href="vistas/css/plugins/select2.min.css">
+  		<!-- dataTable -->
+  		<link rel ="stylesheet" href="vistas/css/plugins/dataTables.bootstrap4.min.css">
+  		<link rel ="stylesheet" href="vistas/css/plugins/responsive.bootstrap.min.css">
   		<!-- Estilos personalizados -->
   		<link rel="stylesheet" href="vistas/css/style.css">
 
@@ -56,6 +76,13 @@
 		<!-- jsignature -->
 		<script src="vistas/js/plugins/jSignature.js"></script>
 		<script src="vistas/js/plugins/jSignature.CompressorSVG.js"></script>
+		<!-- Sweet alert 2 https://sweetalert2.github.io/  -->
+		<script src="vistas/js/plugins/sweetalert.all.js"></script>
+		<!-- DataTables https://datatables.net/  -->
+		<script src="vistas/js/plugins/jquery.dataTables.min.js"></script>
+		<script src="vistas/js/plugins/dataTables.bootstrap4.min.js"></script>
+		<script src="vistas/js/plugins/dataTables.responsive.min.js"></script>
+		<script src="vistas/js/plugins/responsive.bootstrap.min.js"></script>
 	</head>
 	
 	<body class="hold-transition sidebar-mini sidebar-collapse ">

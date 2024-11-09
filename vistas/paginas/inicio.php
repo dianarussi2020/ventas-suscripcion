@@ -1,6 +1,6 @@
 <?php
 include "modulos/preload.php";
-if(isset($_POST['idioma'])){
+if(isset($_POST["idioma"])){
 	if($_POST["idioma"] == "es"){
 		include "modulos/header.php";
 	}else{

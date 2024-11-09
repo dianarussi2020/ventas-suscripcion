@@ -1,3 +1,14 @@
+<?php 
+if($usuario["perfil"] != "admin"){
+  echo '<script>
+    window.location = "'.$ruta.'backoffice/inicio";
+  </script>';
+  return;
+}
+$item = null;
+$valor = null;
+$usuarios = ControladorUsuarios::ctrMostrarUsuarios($item, $valor);
+?>
 <div class="content-wrapper" style="min-height: 1040.24px;">
   <!-- Content Header (Page header) -->
   <section class="content-header">
@@ -21,7 +32,7 @@
     <!-- Default box -->
     <div class="card">
       <div class="card-header">
-        <h3 class="card-title">Title</h3>
+        <h3 class="card-title">Usuarios registrados</h3>
 
         <div class="card-tools">
           <button type="button" class="btn btn-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fas fa-minus"></i></button>
@@ -29,7 +40,48 @@
         </div>
       </div>
       <div class="card-body">
-        Start creating your amazing application!
+        <table class="table table-striped table-bordered dt-responsive tablaUsuarios" 
+          width="100%">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Foto</th>
+              <th>Nombre</th>
+              <th>Email</th>
+              <th>País</th>
+              <th>Suscripción</th>
+              <th>Id suscripción</th>
+              <th>Ciclo de pago</th>
+              <th>Enlace afiliado</th>
+              <th>Patrocinador</th>
+              <th>Email de paypal</th>
+              <th>Última actualización</th>
+              <th>Fecha de vencimiento</th>
+            </tr>
+          </thead>
+          <tbody>
+           <!-- Forma1 comentada sin Ajax no util para muchos datos x carga lenta
+           <?php foreach ($usuarios as $key => $value): ?>
+              <tr>
+                <td><?php echo($key+1);?></td>
+                <td> 
+                  <img src="<?php echo $value["foto"]?>" class="img-fluid" width="30px">
+                </td>
+                <td><?php echo $value["nombre"]?></td>
+                <td><?php echo $value["email"]?></td>
+                <td><?php echo $value["pais"]?></td>
+                <td><?php echo $value["suscripcion"]?></td>
+                <td><?php echo $value["id_suscripcion"]?></td>
+                <td><?php echo $value["ciclo_pago"]?></td>
+                <td><?php echo $value["enlace_afiliado"]?></td>
+                <td><?php echo $value["patrocinador"]?></td>
+                <td><?php echo $value["paypal"]?></td>
+                <td><?php echo $value["fecha"]?></td>
+                <td><?php echo $value["vencimiento"]?></td>
+              </tr>
+            <?php endforeach ?> -->
+          </tbody>
+        </table>
       </div>
       <!-- /.card-body -->
       <div class="card-footer">

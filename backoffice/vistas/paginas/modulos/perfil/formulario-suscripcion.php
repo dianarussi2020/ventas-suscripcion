@@ -19,7 +19,7 @@
 				<label for="inputName" class="control-label">Nombre Completo</label>
 				<div>
 					<input type="text" class="form-control" id="inputName" 
-					value="administrador" readonly>
+					value="<?php echo $usuario["nombre"] ?>" readonly>
 				</div>
 			</div>
 
@@ -27,15 +27,15 @@
 				<label for="inputEmail" class="control-label">Correo electrónico</label>
 				<div>
 					<input type="text" class="form-control" id="inputEmail" 
-					value="info@academyoflife.com" readonly>
+					value="<?php echo $usuario["email"] ?>" readonly>
 				</div>
 			</div>
 
 			<div class="form-group">
-				<label for="inputPatrocinador" class="control-label">Correo electrónico</label>
+				<label for="inputPatrocinador" class="control-label">Patrocinador</label>
 				<div>
 					<input type="text" class="form-control" id="inputPatrocinador" 
-					value="academy-of-life" readonly>
+					value="<?php echo $usuario["patrocinador"] ?>" readonly>
 				</div>
 			</div>
 
@@ -48,8 +48,8 @@
 					<div class="input-group-prepend">
 						<span class="p-2 bg-info rounded-left">http://acedemyoflife.com/</span>
 					</div>
-					<input type="text" class="form-control" id="inputAfiliado" 
-						value="academy-of-life" readonly>
+					<input type="text" class="form-control" id="inputAfiliado"
+						value="<?php echo strtolower(str_replace(" ", "-",$usuario["nombre"]))."-".$usuario["id_usuario"] ?>" readonly>
 				</div>
 			</div>
 

@@ -1,4 +1,5 @@
 <?php
+session_start();
 $ruta = ControladorRuta::ctrRuta();
 // seleccionar var y ctrl+shift+q
 //echo '<pre>'; print_r($ruta); echo '</pre>';
@@ -40,20 +41,49 @@ $ruta = ControladorRuta::ctrRuta();
 		<script src="js/plugins/scrollUP.js"></script>
 		<!-- https://www.jqueryscript.net/loading/Handle-Loading-Progress-jQuery-Nite-Preloader.html -->
 		<script src="js/plugins/jquery.nite.preloader.js"></script>
+		<!-- Sweet alert 2 https://sweetalert2.github.io/  -->
+		<script src="js/plugins/sweetalert.all.js"></script>
 	</head>
 
 	<body>
 		<?php
 			if(isset($_GET["pagina"])){
+				/*Validar correo*/
+				$item = "email_encriptado";
+				$valor = $_GET["pagina"];
+				$validarCorreo = ControladorUsuarios::ctrMostrarUsuarios($item, $valor);
+				if(is_array($validarCorreo)){
+					if($validarCorreo["email_encriptado"] == $_GET["pagina"]){
+						$id = $validarCorreo["id_usuario"];
+						$item = "verificacion";
+						$valor = 1;
+						$respuesta = ControladorUsuarios::ctrActualizarUsuario($id, $item, $valor);
+						if($respuesta == "OK"){
+							echo '<script>
+									swal({
+										type:"success",
+										title: "¡CORRECTO!",
+										text: "Su cuenta ha sido verificada, ya puede ingresar al sistema!",
+										showConfirmButton: true,
+										confirmButtonText: "Cerrar",
+									}).then(function(result){
+										if(result.value){
+											window.location = "'.$ruta.'ingreso"
+										}
+									});
+								</script>';
+						}
+					}
+				}
+
 				if($_GET["pagina"] == "inicio")
 				{
-
 					include "paginas/inicio.php";
 				}
 				if($_GET["pagina"] == "ingreso")
 				{
-					if($_POST['idioma']){
-						if($_POST['idioma'] == "es"){
+					if(isset($_POST["idioma"])){
+						if($_POST["idioma"] == "es"){
 							include "paginas/ingreso.php";
 						}else{
 							include "paginas/ingreso_en.php";
@@ -67,7 +97,7 @@ $ruta = ControladorRuta::ctrRuta();
 
 				if($_GET["pagina"] == "registro")
 				{
-					if($_POST['idioma']){
+					if(isset($_POST["idioma"])){
 						if($_POST['idioma'] == "es"){
 							include "paginas/registro.php";
 						}else{
@@ -82,6 +112,7 @@ $ruta = ControladorRuta::ctrRuta();
 				include "paginas/inicio.php";
 			}			
 		?>
+		<input type="hidden" value="<?php echo $ruta; ?>" id="ruta">
 		<script src="js/script.js"></script>
 	</body>
 </html>
